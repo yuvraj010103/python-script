@@ -23,13 +23,13 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install pytest black flake8 pylint pyinstaller
-        $env:PATH += ";${{ env:PYTHON }}\Scripts"  # Add Scripts to PATH [web:51]
+       
         pyinstaller --version  # Verify
 
     - name: Build executable with PyInstaller
       shell: pwsh
       run: |
-        $env:PATH += ";${{ env:PYTHON }}\Scripts"
+       
         pyinstaller --onefile main.py
 
     - name: Upload EXE as artifact
