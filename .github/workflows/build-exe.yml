@@ -12,9 +12,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        max-parallel: 1
-        fail-fast: false
-
+      max-parallel: 1      # ← Only 1 platform at a time
+      fail-fast: false
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
