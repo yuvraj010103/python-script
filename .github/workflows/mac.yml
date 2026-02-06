@@ -1,13 +1,13 @@
-name: Build Python EXE
+name: Build MACOS Binary
 
 on:
   push:
-    branches: [ main, siri]
-  workflow_dispatch:  # allows manual trigger
+    branches: [ main, siri,ubuntu ]
+  
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
     - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
         python-version: '3.10'
 
     - name: Install dependencies
-      shell: pwsh  # PowerShell explicit
+     
       run: |
         pip install --upgrade pip
         pip install pytest black flake8 pylint pyinstaller
@@ -28,13 +28,13 @@ jobs:
         pyinstaller --version  # Verify
 
     - name: Build executable inter_sum.py
-      shell: pwsh
+    
       run: |
        
         pyinstaller --onefile --noconfirm --clean inter_sum.py
 
-    - name: Upload EXE as artifact
+    - name: Upload macos binary 
       uses: actions/upload-artifact@v4
       with:
-        name: python-exe
-        path: dist/inter_sum.exe
+        name: macos-executable
+        path: dist/mac_sum
