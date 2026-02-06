@@ -2,7 +2,7 @@ name: Build Python EXE
 
 on:
   push:
-    branches: [ main, siri,ubuntu ]
+    branches: [ main, siri,ubuntu]
   
 
 jobs:
@@ -37,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ubuntu-executable
-        path: dist/ubuntu/inter_sum
+        path: dist/inter_sum
