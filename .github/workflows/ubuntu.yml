@@ -1,19 +1,14 @@
-name: Build Python EXE for Ubuntu, Windows, and MacOS
+name: Build Python EXE
 
 on:
   push:
-    branches: [ main, siri,ubuntu]
+    branches: [ main, siri,ubuntu ]
   
 
 jobs:
   build:
-    name: build on matrix.os
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-      max-parallel: 1      # ← Only 1 platform at a time
-      fail-fast: false
+    runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -38,11 +33,8 @@ jobs:
        
         pyinstaller --onefile --noconfirm --clean inter_sum.py
 
-    - name: Upload executable
+    - name: Upload ubuntu executable as artifact
       uses: actions/upload-artifact@v4
       with:
-        name: executable for matrix.os
-        path: |
-           dist/inter_sum
-           dist/inter_sum.exe
-           dist/mac_sum
+        name: ubuntu-executable
+        path: dist/inter_sum
