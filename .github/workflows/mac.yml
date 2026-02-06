@@ -1,0 +1,40 @@
+name: Build MACOS Binary
+
+on:
+  push:
+    branches: [ main, siri,ubuntu ]
+  
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+     
+      run: |
+        pip install --upgrade pip
+        pip install pytest black flake8 pylint pyinstaller
+        pip install -r requirements.txt
+       
+        pyinstaller --version  # Verify
+
+    - name: Build executable inter_sum.py
+    
+      run: |
+       
+        pyinstaller --onefile --noconfirm --clean inter_sum.py
+
+    - name: Upload macos binary 
+      uses: actions/upload-artifact@v4
+      with:
+        name: macos-executable
+        path: dist/mac_sum
