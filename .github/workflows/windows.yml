@@ -27,7 +27,7 @@ jobs:
        
         pyinstaller --version  # Verify
 
-    - name: Build executable inter_sum.py
+    - name: Build executable tictactoe.py
       shell: pwsh
       run: |
        
@@ -37,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: python-exe
-        path: dist/inter_sum.exe
+        path: dist/tictactoe.exe

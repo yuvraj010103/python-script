@@ -27,14 +27,14 @@ jobs:
        
         pyinstaller --version  # Verify
 
-    - name: Build executable inter_sum.py
+    - name: Build executable tictactoe.py
     
       run: |
        
-        pyinstaller --onefile --noconfirm --clean inter_sum.py
+        pyinstaller --onefile --noconfirm --clean tictactoe.py
 
     - name: Upload ubuntu executable as artifact
       uses: actions/upload-artifact@v4
       with:
         name: ubuntu-executable
-        path: dist/inter_sum
+        path: dist/tictactoe.exe
