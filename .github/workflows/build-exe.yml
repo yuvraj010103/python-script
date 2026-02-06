@@ -12,6 +12,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        max-parallel: 1
+        fail-fast: false
 
     steps:
     - name: Checkout code
@@ -44,4 +46,4 @@ jobs:
         path: |
            dist/inter_sum
            dist/inter_sum.exe
-           dist/inter_sum.app
+           dist/mac_sum
