@@ -2,7 +2,7 @@ name: Build Python EXE
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, siri]
   workflow_dispatch:  # allows manual trigger
 
 jobs:
@@ -27,14 +27,14 @@ jobs:
        
         pyinstaller --version  # Verify
 
-    - name: Build executable with PyInstaller
+    - name: Build executable for all .py files
       shell: pwsh
       run: |
        
-        pyinstaller --onefile --noconfirm --clean main.py
+        pyinstaller --onefile --noconfirm --clean *.py
 
     - name: Upload EXE as artifact
       uses: actions/upload-artifact@v4
       with:
         name: python-exe
-        path: dist/main.exe
+        path: dist/ *.exe
